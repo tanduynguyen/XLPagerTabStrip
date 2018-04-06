@@ -159,14 +159,12 @@ open class ButtonBarView: UICollectionView {
             alignmentOffset = leftAlignmentOffset + (rightAlignmentOffset - leftAlignmentOffset) * CGFloat(progress) - cellHalfWidth
         }
         
-        var contentOffset = cellFrame.origin.x - alignmentOffset
+        let contentOffset = cellFrame.origin.x - alignmentOffset
         if contentOffset < 0 {
             contentInset.left = -contentOffset
         } else if contentOffset > contentSize.width - frame.size.width {
-            contentInset.right = contentOffset
+            contentInset.right = contentOffset - (contentSize.width - frame.size.width)
         }
-//        contentOffset = max(0, contentOffset)
-//        contentOffset = min(contentSize.width - frame.size.width, contentOffset)
         return contentOffset
     }
     
